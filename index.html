@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Word Guess Game</title>
+</head>
+
+<body>
+  <div>
+    <h1>Word Guess - Veggie Eddition</h1>
+    <h2>Press any key to get started!</h2>
+  </div>
+  <!-- show user the game information (1) -->
+  <div>
+    <p>Wins:</p>
+    <p id="wins-Text"></p>
+    <p>Current Word</p>
+    <p id="currentWord-Text"></p>
+    <p>Number of Guesses Remaining: </p>
+    <p id="remainingGuesses-Text"></p>
+    <p>Letters Already Guessed:</p>
+    <p id="alreadyGuessed-Text"></p>
+  </div>
+
+  <script>
+
+    // creating variables that hold the number of wins, current word, remaining guesses, and letters already guessed
+    var wins = 0;
+    var currentWord;
+    var remainingGuesses = 12;
+    var alreadyGuessed = [];
+
+    //creating variables that hold references to the places in the html where we want to display things.
+    var winsText = document.getElementById("wins-Text");
+    var currentWordText = document.getElementById("currentWord-Text");
+    var remainingGuessesText = document.getElementById("remainingGuesses-Text");
+    var alreadyGuessedText = document.getElementById("alreadyGuessed-Text");
+
+
+    var wordBank = ["pepper", "squash", "basil", "chile", "tomato"];
+    currentWord = wordBank[Math.floor(Math.random() * wordBank.length)].split("")
+    // as of right now the current word is saved as an array
+    console.log(currentWord)
+
+    document.onkeyup = function(event) { //get user input based on event key (2)
+      var letterGuessed = event.key.toLowerCase(); //store user input for later use (3)
+      var currentWordIndex = currentWord.indexOf(letterGuessed) //dont know how this will be used yet
+      console.log("*" + currentWord)
+      console.log("*" + currentWordIndex)
+
+      for (var i = 0; i < currentWord.length; i++) {
+        console.log("**" + currentWord)
+       //additionally have to make sure that the letter guessed is not contained within alreadyGuessed && letterGuessed = currentWord[i]
+        if (letterGuessed === currentWord[i]) { 
+          currentWord.push([letterGuessed]);
+          currentWordText.textContent = currentWord;
+        }
+        
+        else if (letterGuessed !== alreadyGuessed) {
+          alreadyGuessed.push(letterGuessed);
+          alreadyGuessedText.textContent = alreadyGuessed;
+          remainingGuessesText.textContent = remainingGuesses--;
+          // remainingGuesses === 0 ? gameOver() : alert("Guess again")
+        }
+
+      }
+
+    }
+    // winsText.textContent = wins++
+    // function gameOver() {
+    // }
+  </script>
+
+</body>
+
+</html>
