@@ -43,14 +43,27 @@
     // as of right now the current word is saved as an array
     console.log(currentWord)
 
+    function createUnderscore(currentWord) {
+      for (i = 0; i < currentWord.length; i++)	{
+      newCurrentWordText = document.createElement("div")
+      newCurrentWordText.textContent = "_ ";
+      currentWordText.appendChild(newCurrentWordText)
+		  }
+    }
+
+    createUnderscore();
+
     document.onkeyup = function(event) { //get user input based on event key (2)
       var letterGuessed = event.key.toLowerCase(); //store user input for later use (3)
-      var currentWordIndex = currentWord.indexOf(letterGuessed) //dont know how this will be used yet
+      // var currentWordIndex = currentWord.indexOf(letterGuessed) //dont know how this will be used yet
       console.log("*" + currentWord)
-      console.log("*" + currentWordIndex)
+
+      // for (i = 0; i < currentWord.length; i++)	{
+    	// 			replaceletter = word.indexOf(letter, replaceletter);
+    	// 			underscore = underscore.replace(underscore.charAt(replaceletter), word.charAt(replaceletter));
+    	// 		}
 
       for (var i = 0; i < currentWord.length; i++) {
-        console.log("**" + currentWord)
        //additionally have to make sure that the letter guessed is not contained within alreadyGuessed && letterGuessed = currentWord[i]
         if (letterGuessed === currentWord[i]) { 
           currentWord.push([letterGuessed]);
